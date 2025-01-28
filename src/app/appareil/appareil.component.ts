@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-appareil',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './appareil.component.html',
   styleUrl: './appareil.component.scss'
 })
@@ -12,4 +12,5 @@ export class AppareilComponent {
   getStatus () {
     return this.appreilStatus;
   }
+  
 }
