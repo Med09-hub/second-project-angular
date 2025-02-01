@@ -1,16 +1,14 @@
-<div class ="container">
+<div class="container">
     <div class="row">
         <div class="col-xs-12">
             <h2> Mes appareils</h2>
+            <p>La date d'aujourd'hui :{{ (lastUpdate$ | async) | date:"medium"}} </p>
             <ul class="list-group">
-                <app-appareil *ngFor="let appareil of appareils"
-                             [appareilName]="appareil.name"
-                            [appreilStatus]="appareil.status"
-                ></app-appareil>
-                
+                <app-appareil *ngFor="let app of appareils" [appareilName]="app.name"
+                    [appreilStatus]="app.status"></app-appareil>
+
             </ul>
-            <button class="btn btn-success" [disabled]="!isAuth"
-                                            (click)="onAllumer()">Tout allumer</button>
+            <button class="btn btn-success" [disabled]="!isAuth" (click)="onAllumer()">Tout allumer</button>
         </div>
     </div>
 </div>
