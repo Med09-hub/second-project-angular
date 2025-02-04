@@ -1,6 +1,7 @@
 import { Component,Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule,NgStyle} from '@angular/common'
+import { AppatreilService } from '../services/appareil.service';
 @Component({
   selector: 'app-appareil',
   imports: [FormsModule ,
@@ -12,7 +13,11 @@ import { CommonModule,NgStyle} from '@angular/common'
 export class AppareilComponent {
   @Input() appareilName:string | undefined;
   @Input() appreilStatus:string  | undefined;
+  @Input() appareilIndex:number | undefined;
 
+  constructor(private appServ :AppatreilService) {
+
+  }
   getStatus () {
     return this.appreilStatus;
   }
@@ -25,5 +30,11 @@ export class AppareilComponent {
     else {
     return 'red';
     }
+  }
+  onSwitchOn(){
+this.appServ.switchOnOne(this.appareilIndex!);
+  }
+  onSwitchOff(){
+    this.appServ.switchOffOne(this.appareilIndex!);
   }
 }

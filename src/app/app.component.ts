@@ -5,36 +5,21 @@ import { AppareilComponent } from "./appareil/appareil.component";
 import { CommonModule } from '@angular/common';
 import { AsyncPipe } from '@angular/common';
 import { Observable, of } from 'rxjs';
+import { AppatreilService } from './services/appareil.service';
 @Component({
   selector: 'app-root',
   imports: [AppareilComponent, CommonModule, AsyncPipe],
+  providers:[AppatreilService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   isAuth = false;
-
+appareils:any[] | undefined ;
   lastUpdate$!: Observable<Date>;
 
-  appareils = [
-    {
-      name: 'Machine à laver',
-      status: 'éteint'
-    },
-    {
-      name: 'Television',
 
-
-      status: 'éteint'
-    },
-    {
-      name: 'Ordinateur',
-      status: 'allumé'
-    }
-
-  ];
-
-  constructor() {
+  constructor(private appServ:AppatreilService) {
   }
 
   ngOnInit(): void {
@@ -42,12 +27,15 @@ export class AppComponent implements OnInit {
       () => {
         this.isAuth = true;
       }, 4000);
+      
     this.lastUpdate$ = of(new Date());
+    this.appareils= this.appServ.appareils;
     }
 
   onAllumer() {
-
-
-    console.log('On allume tout !!!');
+this.appServ.switchOnAll();
+  }
+  onEteindre (){
+    this.appServ.switchOffAll();
   }
 }
