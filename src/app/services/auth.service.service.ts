@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { reqHandler } from '../../server';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ constructor() { }
 isAuth=false;
 signIn() {
 return new Promise (
-  (resolve,rejecy) => {
+  (resolve,reject) => {
  setTimeout (
   () => {
   this.isAuth = true;
